@@ -1,0 +1,25 @@
+{%extends "users/base.html" %}
+{% load static %}
+{%load widget_tweaks%}
+{%block body%}
+
+      <div class="user signupBx">
+        <div class="formBx">
+          <form  method="POST">
+            {% csrf_token %}
+            <h2>Create an account</h2>
+          
+            {%render_field form.email %}
+            {%render_field form.password1 %}
+            {%render_field form.password2 %}
+            <input type="submit" name="" value="Sign Up" />
+            <p class="signup">
+              Already have an account ?
+              <a href="{% url 'login' %}">Sign in.</a>
+            </p>
+          </form>
+        </div>
+        <div class="imgBx"><img src="{% static 'img/Applicant.jpg' %}" alt="" /></div>
+      </div>
+  
+  {% endblock body%}

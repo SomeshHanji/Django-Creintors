@@ -1,0 +1,29 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock css %}
+
+{% block body %}
+
+    <div class="user signinBx">
+      <div class="imgBx"><img src="{% static 'img/Applicant.jpg' %}" alt="" /></div>
+      <div class="formBx">
+        <form method="POST">
+          {% csrf_token %}
+          <h2>Sign In</h2>
+          <input type="email" name="email" placeholder="Username" />
+          <input type="password" name="password" placeholder="Password" />
+          <input type="submit" name="" value="Login" />
+          <p class="signup">
+            Don't have an account ?<br>
+            Sign up as
+            <a href="{% url 'register-recruiter' %}" >Recruiter.</a><br>
+            Sign up as
+            <a href="{% url 'register-applicant' %}" >Applicant.</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+{% endblock body%}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+{% if request.user.is_applicant %}
+
+<div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Button</a>
+    </div>
+  </div>
+  
+  <div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title">Card applicant</h5>
+      <p class="card-text">Applicant Dash</p>
+      <a href="#" class="btn btn-primary">Button</a>
+    </div>
+  </div>
+
+{% elif request.user.is_recruiter %}
+{% if not request.user.has_company %}
+<div class="alert alert-danger" role="alert">
+ You are seeing this because your not created company profile.Create one ffrom <a href="{%url 'update-company' %}" class="alert-link">here</a>. Give it a click if you like.
+</div>
+{% endif %}
+
+
+<section>
+  <div class="card w-75">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Recruiter Dash</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+    
+</section>
+{% endif %}
+{% endblock body%}
+
