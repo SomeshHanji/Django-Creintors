@@ -3,16 +3,15 @@
 {%load widget_tweaks%}
 
 {% block body %}
-
-<div class="container mt-3"> 
+{% if request.user.has_company %}
+<div class="container mt-3">
     <div class="border border-primary rounded p-3">
-        <legend class="text-primary">Create A Company</legend>
-        <form method="POST"> 
+        <legend class="text-primary">Update Company</legend>
+        <form method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="name" class="form-label">Company Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{user.company.name}}"
-                    required>
+                <input type="text" class="form-control" id="name" name="name" value="{{user.company.name}}" required>
             </div>
             <div class="mb-3">
                 <label for="est_date" class="form-label">Established Date</label>
@@ -21,17 +20,43 @@
             </div>
             <div class="mb-3">
                 <label for="state" class="form-label">State</label>
-                <input type="text" class="form-control" id="state" name="state" value="{{user.company.state}}"
-                    required>
+                <input type="text" class="form-control" id="state" name="state" value="{{user.company.state}}" required>
             </div>
             <div class="mb-3">
                 <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" value="{{user.company.city}}"
-                    name="city" required>
+                <input type="text" class="form-control" id="city" value="{{user.company.city}}" name="city" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<div class="container mt-3">
+    <div class="border border-primary rounded p-3">
+        <legend class="text-primary">Create a Company</legend>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Company Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{user.company.name}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="est_date" class="form-label">Established Date</label>
+                <input type="year" class="form-control" id="est_date" name="est_date" value="{{user.company.est_date}}"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="state" class="form-label">State</label>
+                <input type="text" class="form-control" id="state" name="state" value="{{user.company.state}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" value="{{user.company.city}}" name="city" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
+{% endif %}
 
 {% endblock body%}
