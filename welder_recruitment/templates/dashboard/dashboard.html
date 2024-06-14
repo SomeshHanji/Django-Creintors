@@ -2,6 +2,11 @@
 {% load static %}
 {% block body %}
 {% if request.user.is_applicant %}
+{% if not request.user.has_resume %}
+<div class="alert alert-danger" role="alert">
+ You are seeing this because your profile is not  created.Create one from <a href="{% url 'update-resume' %}" class="alert-link">here</a>. Give it a click if you like.
+</div>
+{% endif %}
 
 <div class="card w-75">
     <div class="card-body">
@@ -27,16 +32,33 @@
 {% endif %}
 
 
-<section>
-  <div class="card w-75">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Recruiter Dash</p>
-        <a href="#" class="btn btn-primary">Button</a>
+<section class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card text-center">
+        <div class="card-header">Jobs</div>
+        <div class="card-body">
+          <h5 class="card-title">No Of jobs posted</h5>
+          <p class="card-text">You have posted x jobs </p>
+          <a href="#" class="btn btn-primary">View jobs</a>
+        </div>
+        
       </div>
     </div>
-    
+    <div class="col-md-6">
+      <div class="card text-center">
+        <div class="card-header">Applications</div>
+        <div class="card-body">
+          <h5 class="card-title">No of applications recived</h5>
+          <p class="card-text">X applications recived</p>
+          <a href="#" class="btn btn-primary">View All applications</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </section>
+
 {% endif %}
 {% endblock body%}
 

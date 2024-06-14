@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{%load widget_tweaks%}
+
+{% block body %}
+
+<div class="container mt-3"> 
+    <div class="border border-primary rounded p-3">
+        <legend class="text-primary">Create A Job requirment</legend>
+        <form method="POST"> 
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Job Title </label>
+                <input type="text" class="form-control" id="title" name="title"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">City</label>
+                <input type="year" class="form-control" id="location" name="location"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="salary" class="form-label">Salary</label>
+                <input type="text" class="form-control" id="salary" name="salary"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="requirements"> Requirements</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="Requirements" name="Requirements" style="height: 100px"></textarea>
+                
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="Description" name="Description" style="height: 100px"></textarea>
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock body%}
