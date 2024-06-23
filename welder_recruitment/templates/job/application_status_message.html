@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{%load widget_tweaks%}
+
+{% block body %}
+{% if application.status == 'Accepted' %}
+<section class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">Congratulations! Your Application for {{application.job.title}}  is accepted.</h2>
+        <p class="col-md-8 fs-5 mt-3">
+            Dear {{application.user.resume.first_name}},<br><br>
+
+            We are pleased to inform you that your application for the {{application.job.title}} position at {{application.job.company}}  has been accepted. We are excited to have you join our team. You will receive further details and next steps via email from our company email soon from the email given below.        </p>
+        <p class="col-md-8 fs-5 mt-3">
+            Email:{{application.job.company.user.email}}
+        </p>
+    </div>
+</section>
+{% elif application.status == 'Declined' %}
+<section class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">Update on Your Application for {{application.job.title}}.</h2>
+        <p class="col-md-8 fs-5 mt-3">
+            Dear {{application.user.resume.first_name}},<br><br>
+
+            Thank you for applying for the {{application.job.title}} position at {{application.job.company}}. After careful consideration, we have chosen to proceed with other candidates. We appreciate your interest and encourage you to apply for future opportunities.<p class="col-md-8 fs-5 mt-3">
+            
+        </p>
+    </div>
+</section>
+{% else %}
+<section class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">Update on Your Application for {{application.job.title}}.</h2>
+        <p class="col-md-8 fs-5 mt-3">
+            Dear {{application.user.resume.first_name}},<br><br>
+
+            Thank you for your application for the {{application.job.title}} position at {{application.job.company}}. Your application is currently under review, and we will notify you of any updates regarding the status of your application. We appreciate your patience and interest in joining our team. Should you have any questions, please feel free to reach out to us.
+        </p>
+    </div>
+</section>
+
+{% endblock body%}

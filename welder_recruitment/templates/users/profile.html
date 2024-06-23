@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% if user %}
+
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center">
+      <div class="col col-lg-9 col-xl-8">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #5569d8; height:200px;">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <img src="{{ resume.profile_photo.url }}"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                style="width: 150px; z-index: 1">
+              <!-- <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark text-body" data-mdb-ripple-color="dark" style="z-index: 1;">
+                  Edit profile
+                </button> -->
+            </div>
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5> {{resume.first_name}} {{resume.surname}}</h5>
+              <p> {{resume.location}}</p>
+            </div>
+          </div>
+
+          <div class="card-body p-4 text-black">
+            <div class="mb-5  text-body">
+              <p class="lead fw-normal mb-1">About</p>
+              <div class="p-4 bg-body-tertiary">
+                <p class=" mb-1">works as:{{resume.job_title}}</p>
+                <p class=" mb-1">Currently working in :{{resume.current_company}}</p>
+                <p class=" mb-1">Experience :{{resume.experience}} years</p>
+                <p class=" mb-0">Certfied in:{{resume.cert_type}}</p>
+                <p class=" mb-0">Type of Welding:{{resume.welding_type}}</p>
+                <p class=" mb-0">Email:{{resume.user}}</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-4 text-body">
+              <p class="lead fw-normal mb-0">Certficate</p>
+
+            </div>
+            <div class="row g-2">
+              <div class="col mb-2">
+                <img src="{{ resume.cert_upload.url }}" alt="image 1" class="w-100 rounded-3">
+              </div>
+
+            </div>
+
+
+          </div>
+          {% if request.user.is_applicant %}
+          <a type="button" href="{% url 'update-profile' %}" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark text-body"
+            data-mdb-ripple-color="dark" style="z-index: 1;">
+            Edit profile
+            {% endif %}
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}
+{% endblock body %}

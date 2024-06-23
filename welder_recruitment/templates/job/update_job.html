@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{%load widget_tweaks%}
+
+{% block body %}
+
+
+<div class="container mt-3"> 
+    <div class="border border-primary rounded p-3">
+        <legend class="text-primary">Create A Job requirment</legend>
+        <form method="POST"> 
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Job Title" value="{{ job.title }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="state" class="form-label">State</label>
+                <select class="form-control" id="state" name="state" required>
+                    <option value="">Select State</option>
+                    {% for state in states %}
+                        <option value="{{ state.id }}" {% if state.id == job.state_id %}selected{% endif %}>{{ state.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <select class="form-control" id="city" name="city" required>
+                    <option value="">Select City</option>
+                    {% for city in cities %}
+                        <option value="{{ city.id }}" {% if city.id == job.city_id %}selected{% endif %}>{{ city.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="salary" class="form-label">Salary</label>
+                <input type="text" class="form-control" id="salary" name="salary" placeholder="Per Month" value="{{ job.salary }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="vacancy" class="form-label">Number of Vacancies</label>
+                <input type="text" class="form-control" id="vacancy" name="vacancy" value="{{ job.vacancy }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="exp_requried" class="form-label">Minimum Experience Required</label>
+                <input type="number" class="form-control" id="exp_requried" name="exp_requried" placeholder="Years" value="{{ job.exp_requried }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="description" name="description" style="height: 100px">{{ job.description }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Availability Status</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="options" id="option1" value="True" {% if job.is_available %}checked{% endif %} required>
+                    <label class="form-check-label" for="option1">Available</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="options" id="option2" value="False" {% if not job.is_available %}checked{% endif %} required>
+                    <label class="form-check-label" for="option2">Filled</label>
+                </div>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Custom JavaScript for dynamic city loading -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#state").change(function () {
+            var url = "{% url 'ajax_load_cities' %}"; // get the url of the `load_cities` view
+            var stateId = $(this).val(); // get the selected state ID from the HTML input
+
+            $.ajax({
+                url: url,
+                data: {
+                    'state_id': stateId
+                },
+                success: function (data) {
+                    $("#city").html(""); // empty the city dropdown
+                    $("#city").append('<option value="">Select City</option>'); // add placeholder
+                    $.each(data, function (key, value) {
+                        $("#city").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock body%}

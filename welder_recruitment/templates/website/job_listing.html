@@ -21,9 +21,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{job.title}}</h5>
                 <p class="card-text">Posted by:{{job.company}}</p>
-                <p class="card-text">Location:{{job.location}}</p>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text">{{job.salary | intcomma}}</p>
+                <p class="card-text">Location: {{job.city}} | {{job.state}}</p>
+                <p class="card-text">{{job.description}}</p>
+                <p class="card-text">Salary: {{job.salary | intcomma}}Per Month</p>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <small class="text-muted">created {{ job.timestamp | naturaltime }}</small>

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{%load widget_tweaks%}
+
+{% block body %}
+
+<div class="container mt-3">
+    <div class="border border-primary rounded p-3">
+        <legend class="text-primary">Update Profile</legend>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{user.resume.first_name}}"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="surname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="surname" name="surname" value="{{user.resume.surname}}"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City:</label>
+                <select id="city" name="city"  class="form-control">
+                    <option value>Select City</option>
+                    {% for city in cities %}
+                        <option value="{{ city.id }}" {% if city.id == city_id %}selected{% endif %}>
+                            {{ city.name }}
+                        </option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="current_company" class="form-label">Current Working Company</label>
+                <input type="text" class="form-control" id="current_company" name="current_company"
+                    value="{{user.resume.current_company}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="experience" class="form-label">Experience</label>
+                <input type="number" class="form-control" id="experience" placeholder="Experience in years"
+                    name="experience" value="{{user.resume.experience}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="job_title" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="job_title" value="{{user.resume.job_title}}"
+                    name="job_title" required>
+            </div>
+            <div class="mb-3">
+                <label for="Welding_type" class="form-label">Type Of Welding</label>
+                <select class="form-control" id="Welding_type" name="Welding_type" value>
+                    <option value="" {% if user.resume.welding_type == "" %}selected{% endif %}>Open this select menu</option>
+                    <option value="Arc Welding" {% if user.resume.welding_type == "Arc Welding" %}selected{% endif %}>Arc Welding</option>
+                    <option value="Gas Welding" {% if user.resume.welding_type == "Gas Welding" %}selected{% endif %}>Gas Welding</option>
+                    <option value="Energy Beam Welding" {% if user.resume.welding_type == "Energy Beam Welding" %}selected{% endif %}>Energy Beam Welding</option>
+                    <option value="Resistance Welding" {% if user.resume.welding_type == "Resistance Welding" %}selected{% endif %}>Resistance Welding</option>
+                    <option value="Others" {% if user.resume.welding_type == "Others" %}selected{% endif %}>Others</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="cert_type" class="form-label">Certification</label>
+                <select class="form-control" id="cert_type" name="cert_type">
+                    <option value="" {% if user.resume.cert_type == "" %}selected{% endif %}>Open this select menu</option>
+                    <option value="Shielded Metal Arc Welding (SMAW) / Stick Welding" {% if user.resume.cert_type == "Shielded Metal Arc Welding (SMAW) / Stick Welding" %}selected{% endif %}>Shielded Metal Arc Welding (SMAW) / Stick Welding</option>
+                    <option value="Gas Metal Arc Welding (GMAW) / MIG Welding" {% if user.resume.cert_type == "Gas Metal Arc Welding (GMAW) / MIG Welding" %}selected{% endif %}>Gas Metal Arc Welding (GMAW) / MIG Welding</option>
+                    <option value="Gas Tungsten Arc Welding (GTAW) / TIG Welding" {% if user.resume.cert_type == "Gas Tungsten Arc Welding (GTAW) / TIG Welding" %}selected{% endif %}>Gas Tungsten Arc Welding (GTAW) / TIG Welding</option>
+                    <option value="Flux-Cored Arc Welding (FCAW)" {% if user.resume.cert_type == "Flux-Cored Arc Welding (FCAW)" %}selected{% endif %}>Flux-Cored Arc Welding (FCAW)</option>
+                    <option value="Others" {% if user.resume.cert_type == "Others" %}selected{% endif %}>Others</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock body%}

@@ -1,6 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+
+from job.models import Applyjobs, Job
 from .models import User
 from .form import RegisterUserForm
 from resume.models import Resume
@@ -80,3 +82,30 @@ def logout_user(request):
 
 def index(request):
     return render(request, "users/base.html")
+
+def profile(request):
+    resume = get_object_or_404(Resume, user=request.user) 
+    email = request.user
+    context={'resume':resume,'email':email}
+    return render(request,"users/profile.html",context)
+
+def recruite_profile_view(request,pk):
+    application = get_object_or_404(Applyjobs, id=pk)
+    user = application.user
+    resume = get_object_or_404(Resume, user=user)
+    context={'resume':resume}
+    
+    return render(request,"users/profile.html",context)
+
+def application_status_update(request,pk):
+    application = get_object_or_404(Applyjobs, id=pk)
+    user = application.user
+    job=application.job
+    jobs = get_object_or_404(jobs, job=job)
+    context={
+        'user':user,
+        'jobs':jobs
+    }
+    return render(request,"job/application_status_message",context)
+
+

@@ -6,10 +6,20 @@
     <div class="container-fluid py-5">
         <h2 class="display-5 fw-bold">{{job.title}}</h2>
         <p class="col-md-8 fs-5 mt-3">
-            {{job.location}} | {{job.salary}}
+            {{job.state}} | {{job.city}}  | Per Month:{{job.salary}}
+        </p>
+        <p class="col-md-8 fs-5 mt-3">
+            No Of Vacancy:{{job.vacancy}}
+        </p>
+        <p class="col-md-8 fs-5 mt-3">
+            Minimum Experience:{{job.exp_requried}}
         </p>
         {% if has_applied == False %}
+        {% if request.user.is_applicant %}
+        {% if request.user.has_resume %}
         <a href="{% url 'job-application' job.pk %}" class="btn btn-primary btn-lg">Apply Now</a>
+        {% endif %}
+        {% endif %}
         {% else %}
         <p > <span class="text-danger">You have already applied for this job.</span></p>
         {% endif %}
@@ -24,52 +34,18 @@
     </section>
 
 </div><br>
-<div>
-    <section>
-        <h5>Job Requirements</h5>
-        <p>
-            {{job.requirements}}
-        </p>
-    </section>
 
-</div><br>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+<div class="row g-4">
+    <div class="col-12">
         <div class="card h-100">
             <div class="card-body">
-                <h5 class="card-title">Other Details</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+                <h5 class="card-title text-center">About the Company</h5>
+                <p class="card-text">{{job.company}}</p>
+                <p class="card-text">{{job.company.state}} | {{job.company.city}}</p>
+                <p class="card-text">{{job.company}}</p>
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">About the Company</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-    </div>
-    <div class="col mt-3">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Related Jobs</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-    </div>
-
 </div>
+
 {% endblock body%}

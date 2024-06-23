@@ -12,10 +12,12 @@
                 <tr>
                     <th scope="col">First Name</th>
                     <th scope="col">Surname</th>
-                    <th scope="col">Location</th>
+                    <th scope="col">City</th>
                     <th scope="col">Job Role</th>
                     <th scope="col">Application date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Application Status</th>
+                    <th scope="col">Applicant Profile</th>
+                    <th scope="col">Acction</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +28,11 @@
                     <td>{{app.user.resume.location}}</td>
                     <td>{{app.user.resume.job_title}}</td>
                     <td>{{app.timestamp}}</td>
+                    <td>{{app.status}}</td>
+
                     
-                    <td><a href="#"><small>update job</small></a></td>
+                    <td><a href="{% url 'applicant-profile' app.id %}"><small>View Profile</small></a></td>
+                    <td><a href="{% url 'accepted' app.id %}"><small>Accepted</small></a>/<a href="{% url 'declined' app.id %}"><small>Rejected</small></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

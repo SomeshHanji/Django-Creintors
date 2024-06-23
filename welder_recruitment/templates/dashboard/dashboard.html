@@ -8,21 +8,35 @@
 </div>
 {% endif %}
 
-<div class="card w-75">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Button</a>
+<section class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card text-center">
+        <div class="card-header">Jobs</div>
+        <div class="card-body">
+          <h5 class="card-title">Total number of</h5>
+          <p class="card-text">You have posted {{jobs_count}} jobs </p>
+          
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-center">
+        <div class="card-header">Applications</div>
+        <div class="card-body">
+          <h5 class="card-title">No of applications recived</h5>
+          {% for company in companies %}
+          {% if company == request.user.company %}
+          <p class="card-text">{{ company.name }}: {{ company.applications_count }} applications recived</p>
+          
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
-  
-  <div class="card w-50">
-    <div class="card-body">
-      <h5 class="card-title">Card applicant</h5>
-      <p class="card-text">Applicant Dash</p>
-      <a href="#" class="btn btn-primary">Button</a>
-    </div>
-  </div>
+</section>
 
 {% elif request.user.is_recruiter %}
 {% if not request.user.has_company %}
@@ -39,8 +53,8 @@
         <div class="card-header">Jobs</div>
         <div class="card-body">
           <h5 class="card-title">No Of jobs posted</h5>
-          <p class="card-text">You have posted x jobs </p>
-          <a href="#" class="btn btn-primary">View jobs</a>
+          <p class="card-text">You have posted {{jobs_count}} jobs </p>
+          
         </div>
         
       </div>
@@ -50,10 +64,13 @@
         <div class="card-header">Applications</div>
         <div class="card-body">
           <h5 class="card-title">No of applications recived</h5>
-          <p class="card-text">X applications recived</p>
-          <a href="#" class="btn btn-primary">View All applications</a>
+          {% for company in companies %}
+          {% if company == request.user.company %}
+          <p class="card-text">{{ company.name }}: {{ company.applications_count }} applications recived</p>
+          
+          {% endif %}
+          {% endfor %}
         </div>
-        
       </div>
     </div>
   </div>
