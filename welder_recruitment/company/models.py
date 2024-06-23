@@ -5,14 +5,14 @@ class State(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Unnamed State"
 
 class City(models.Model):
     name = models.CharField(max_length=100)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Unnamed State"
     
 class Company(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -24,4 +24,4 @@ class Company(models.Model):
     desc=models.TextField(default='Default description')
 
     def __str__(self) :
-        return self.name
+        return self.name if self.name else "Unnamed Company"

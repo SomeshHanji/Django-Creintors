@@ -22,7 +22,7 @@ class Job(models.Model):
     timestamp=models.DateTimeField()
     
     def __str__(self):
-        return self.title
+        return self.title if self.title else "No Title"
     def save(self, *args, **kwargs):
         # Set the timestamp to the current time in IST if not already set
         if not self.timestamp:

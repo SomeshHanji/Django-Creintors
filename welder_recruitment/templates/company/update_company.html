@@ -26,6 +26,10 @@
                 <input type="year" class="form-control" id="est_date" name="est_date" placeholder="Enter Established Year" value="{{ company.est_date }}" required>
             </div>
             <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control" placeholder="About company" id="description" name="description" style="height: 100px">{{ company.desc }}</textarea>
+            </div>
+            <div class="mb-3">
                 <label for="state" class="form-label">State</label>
                 <select class="form-control" id="state" name="state" required>
                     <option value="">Select State</option>
@@ -75,6 +79,11 @@
                 <input type="year" class="form-control" id="est_date" name="est_date" placeholder="Enter Established Year" value="{{user.company.est_date}}"
                     required>
             </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="description" name="description" style="height: 100px">{{ job.description }}</textarea>
+            </div>
+
             <div class="mb-3">
                 <label for="state" class="form-label">State</label>
                 <select class="form-control" id="state" name="state" required>

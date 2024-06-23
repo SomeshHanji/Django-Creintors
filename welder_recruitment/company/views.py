@@ -39,6 +39,7 @@ def update_company(request):
             est_date = request.POST['est_date']
             state_id = request.POST['state']
             city_id = request.POST['city']
+            desc=request.POST['description']
 
             try:
                 validate_gst_number(gst_number)
@@ -54,9 +55,10 @@ def update_company(request):
                 company.state = state
                 company.city = city
                 company.gst_number = gst_number
+                company.desc=desc
                 company.save()
             else:
-                company = Company.objects.create(user=user, name=name, est_date=est_date, state=state, city=city, gst_number=gst_number)
+                company = Company.objects.create(user=user, name=name, est_date=est_date, state=state, city=city, gst_number=gst_number,desc=desc)
 
             user.has_company = True
             user.save()

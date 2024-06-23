@@ -136,7 +136,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="cert_type" class="form-label">Certification</label>
+                <label for="cert_type" class="form-label"> Certification</label>
                 <select class="form-control" id="cert_type" name="cert_type">
                     <option value="" {% if user.resume.cert_type == "" %}selected{% endif %}>Open this select menu</option>
                     <option value="Shielded Metal Arc Welding (SMAW) / Stick Welding" {% if user.resume.cert_type == "Shielded Metal Arc Welding (SMAW) / Stick Welding" %}selected{% endif %}>Shielded Metal Arc Welding (SMAW) / Stick Welding</option>

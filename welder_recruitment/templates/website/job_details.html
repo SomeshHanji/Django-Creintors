@@ -23,15 +23,18 @@
         {% else %}
         <p > <span class="text-danger">You have already applied for this job.</span></p>
         {% endif %}
+        <br><br><br>
+
+        <section>
+            <h5>Job Description</h5>
+            <p>
+                {{job.description}}
+            </p>
+        </section>
     </div>
 </section>
 <div>
-    <section>
-        <h5>Job Description</h5>
-        <p>
-            {{job.description}}
-        </p>
-    </section>
+    
 
 </div><br>
 
@@ -40,9 +43,11 @@
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="card-title text-center">About the Company</h5>
-                <p class="card-text">{{job.company}}</p>
-                <p class="card-text">{{job.company.state}} | {{job.company.city}}</p>
-                <p class="card-text">{{job.company}}</p>
+                <p class="card-text">Company:{{job.company}}</p>
+                <p class="card-text">Location:{{job.company.state}} | {{job.company.city}}</p>
+                <p class="card-text">Established:{{job.company.est_date}}</p>
+                <p class="card-text">Email:{{job.company.user}}</p>
+                <p class="card-text">Description:{{job.company.desc}}</p>
             </div>
         </div>
     </div>
