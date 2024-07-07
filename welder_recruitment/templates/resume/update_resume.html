@@ -78,15 +78,15 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="profile_photo" class="form-label">Upload Certificate</label>
-                <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/*" onchange="displayImageName(this)">
+                <label for="profile_photo" class="form-label">Upload Profile Photo</label>
+                <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/*" onchange="displayImageName(this)" required>
                 <p id="profile_photo"></p>
             </div>
             
             <script>
                 function displayImageName(input) {
                     const fileName = input.files[0].name;
-                    document.getElementById('profile_photo').textContent = 'Selected File: ' + fileName;
+                    document.getElementById('profile_photo').textContent = 'Selected File: ' + fileName; 
                 }
             </script>
 

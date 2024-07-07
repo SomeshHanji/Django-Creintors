@@ -15,7 +15,7 @@ class Job(models.Model):
     state=models.ForeignKey(State,on_delete=models.CASCADE,blank=True,null=True)
     city=models.ForeignKey(City,on_delete=models.CASCADE,blank=True,null=True)
     salary=models.PositiveIntegerField()
-    vacancy=models.PositiveIntegerField(null=True)
+    vacancy=models.PositiveIntegerField()
     exp_requried=models.PositiveIntegerField(null=True)
     description=models.TextField(default='Default description')
     is_available=models.BooleanField(default=True)

@@ -6,7 +6,7 @@
 
 <div class="container mt-3"> 
     <div class="border border-primary rounded p-3">
-        <legend class="text-primary">Create A Job requirment</legend>
+        <legend class="text-primary">Post a Job Requirement</legend>
         <form method="POST"> 
             {% csrf_token %}
             <div class="mb-3">
@@ -36,8 +36,7 @@
             </div>
             <div class="mb-3">
                 <label for="vacancy" class="form-label">Number of Vacancies</label>
-                <input type="text" class="form-control" id="vacancy" name="vacancy"
-                    required>
+                <input type="text" class="form-control" id="vacancy" name="vacancy" value="{{ job.vacancy }}" required>
             </div>
             <div class="mb-3">
                 <label for="exp_requried" class="form-label">Minimum Experience Required</label>

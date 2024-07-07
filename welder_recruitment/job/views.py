@@ -25,6 +25,7 @@ def create_job(request):
                 title=title,
                 description=description,
                 state=state,
+                vacancy=vacancy,
                 salary=salary,
                 city=city,
                 user=request.user,
@@ -55,6 +56,7 @@ def update_job(request, pk):
             exp_requried=request.POST['exp_requried']
             description = request.POST['description']
             is_available = request.POST.get('options') == 'True'
+            
             
             # Get the State and City instances
             state = State.objects.get(id=state_id)

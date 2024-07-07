@@ -16,7 +16,6 @@ def update_resume(request):
             resume = None
         if request.method == 'POST':
             user = User.objects.get(id=request.user.id)
-            
             name = request.POST['name']
             surname = request.POST['surname']
             location = request.POST['city']
@@ -27,8 +26,6 @@ def update_resume(request):
             profile_photo = request.FILES['profile_photo']
             current_company=request.POST['current_company']
             experience=request.POST['experience']
-
-            
             city = City.objects.get(id=location)
             var = Resume.objects.create(
                 user=user,
@@ -48,8 +45,6 @@ def update_resume(request):
             var.save()
             messages.info(request,'your resume information  has been updated!')
             return redirect('dashboard')
-        
-        
         cities = City.objects.all()
         return render(request, 'resume/update_resume.html',{'cities':cities})
     else:

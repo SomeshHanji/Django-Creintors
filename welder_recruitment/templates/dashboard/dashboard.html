@@ -1,49 +1,89 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body %}
+
+{% block head %}
+<style>
+.custom-carousel {
+  max-width: auto;  /* Adjust the width as needed */
+  max-height: 100px; /* Adjust the height as needed */
+  margin: 0 auto;    /* Center the carousel */
+}
+
+.custom-carousel .carousel-inner img {
+  width: 25%;
+  height: 25%;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 0 0 5px 5px; /* matching rounded corners */
+}
+</style>
+{% endblock head %}
 {% if request.user.is_applicant %}
 {% if not request.user.has_resume %}
 <div class="alert alert-danger" role="alert">
- You are seeing this because your profile is not  created.Create one from <a href="{% url 'update-resume' %}" class="alert-link">here</a>. Give it a click if you like.
+  You are seeing this because your profile is not created.Create one from <a href="{% url 'update-resume' %}"
+    class="alert-link">here</a>. Give it a click if you like.
 </div>
 {% endif %}
+<section class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h2 class="display-5 fw-bold">Showcase Your Skills and Secure Top Welding Jobs Fast with Our Dedicated Platform for
+      Welders!</h2>
 
-<section class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card text-center">
-        <div class="card-header">Jobs</div>
-        <div class="card-body">
-          <h5 class="card-title">Total number of</h5>
-          <p class="card-text">You have posted {{jobs_count}} jobs </p>
-          
-        </div>
-        
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card text-center">
-        <div class="card-header">Applications</div>
-        <div class="card-body">
-          <h5 class="card-title">No of applications recived</h5>
-          {% for company in companies %}
-          {% if company == request.user.company %}
-          <p class="card-text">{{ company.name }}: {{ company.applications_count }} applications recived</p>
-          
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
   </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 position-relative">
+      <img class="img-fluid shadow rounded mb-4 gallery-img" src="{% static 'img/Applicant.jpg' %}" alt="boulton-watt-murdoch.png">
+      <div class="caption"> Creintors Automation Solutions Pvt Ltd.</div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-4 position-relative">
+    <img class="img-fluid shadow rounded mb-4 gallery-img" src="{% static 'img/Applicant.jpg' %}" alt="boulton-watt-murdoch.png">
+    <div class="caption"> Creintors Automation Solutions Pvt Ltd.</div>
+</div>
+<div class="col-sm-12 col-md-6 col-lg-4 position-relative">
+  <img class="img-fluid shadow rounded mb-4 gallery-img" src="{% static 'img/Applicant.jpg' %}" alt="boulton-watt-murdoch.png">
+  <div class="caption"> Creintors Automation Solutions Pvt Ltd.</div>
+</div>
+  </div>
+  
+
+
+
 </section>
 
 {% elif request.user.is_recruiter %}
 {% if not request.user.has_company %}
 <div class="alert alert-danger" role="alert">
- You are seeing this because your not created company profile.Create one ffrom <a href="{%url 'update-company' %}" class="alert-link">here</a>. Give it a click if you like.
+  You are seeing this because your not created company profile. Create one from <a href="{%url 'update-company' %}"
+    class="alert-link">here</a>. Give it a click if you like.
 </div>
 {% endif %}
+<section class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h2 class="display-5 fw-bold">Find and Hire Top-Tier Welders Quickly with Our Comprehensive Recruiting Solution for
+      Companies!</h2>
+      
+      
+        
+
+  </div>
+</section>
+
 
 
 <section class="container">
@@ -52,22 +92,22 @@
       <div class="card text-center">
         <div class="card-header">Jobs</div>
         <div class="card-body">
-          <h5 class="card-title">No Of jobs posted</h5>
-          <p class="card-text">You have posted {{jobs_count}} jobs </p>
-          
+          <h5 class="card-title">Number of jobs posted</h5>
+          <h6 class="card-title">You have posted {{jobs_count}} jobs </h6>
+
         </div>
-        
+
       </div>
     </div>
     <div class="col-md-6">
       <div class="card text-center">
         <div class="card-header">Applications</div>
         <div class="card-body">
-          <h5 class="card-title">No of applications recived</h5>
+          <h5 class="card-title">Number of applications received</h5>
           {% for company in companies %}
           {% if company == request.user.company %}
-          <p class="card-text">{{ company.name }}: {{ company.applications_count }} applications recived</p>
-          
+          <h6 class="card-title">{{ company.name }}: {{ company.applications_count }} applications received</h6>
+
           {% endif %}
           {% endfor %}
         </div>
@@ -78,4 +118,3 @@
 
 {% endif %}
 {% endblock body%}
-
