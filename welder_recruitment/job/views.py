@@ -128,7 +128,7 @@ def job_accepted(request,pk):
         job=application.job
         application.status='Accepted'
         application.save()
-        jobs = get_object_or_404(Job, title=job)
+        jobs = Job.objects.filter(title=job.title)
         context={
             'user':user,
             'jobs':jobs
@@ -144,7 +144,7 @@ def job_rejected(request,pk):
         job=application.job
         application.status='Declined'
         application.save()
-        jobs = get_object_or_404(Job, title=job)
+        jobs = Job.objects.filter(title=job.title)
         context={
             'user':user,
             'jobs':jobs

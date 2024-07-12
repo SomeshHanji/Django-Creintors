@@ -5,7 +5,7 @@ from .filter import JobFilter
 
 #rendering the home page
 def home(request):
-    filter=JobFilter(request.GET,queryset=Job.objects.filter().order_by('-timestamp'))
+    filter=JobFilter(request.GET, queryset=Job.objects.all())
     context={'filter':filter}
     return render(request,'website/home.html',context)
 

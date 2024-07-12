@@ -47,18 +47,12 @@
 
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 position-relative">
-      <img class="img-fluid shadow rounded mb-4 gallery-img" src="{% static 'img/Applicant.jpg' %}" alt="boulton-watt-murdoch.png">
-      <div class="caption"> Creintors Automation Solutions Pvt Ltd.</div>
-  </div>
+  {% for item in data %}
   <div class="col-sm-12 col-md-6 col-lg-4 position-relative">
-    <img class="img-fluid shadow rounded mb-4 gallery-img" src="{% static 'img/Applicant.jpg' %}" alt="boulton-watt-murdoch.png">
-    <div class="caption"> Creintors Automation Solutions Pvt Ltd.</div>
-</div>
-<div class="col-sm-12 col-md-6 col-lg-4 position-relative">
-  <img class="img-fluid shadow rounded mb-4 gallery-img" src="{% static 'img/Applicant.jpg' %}" alt="boulton-watt-murdoch.png">
-  <div class="caption"> Creintors Automation Solutions Pvt Ltd.</div>
-</div>
+    <img class="img-fluid shadow rounded mb-4 gallery-img" src="{{ item.profile_picture }}" alt="boulton-watt-murdoch.png">
+    <div class="caption"> Job Salary: {{ item.job_salary }}</div>
+  </div>
+  {% endfor %}
   </div>
   
 
